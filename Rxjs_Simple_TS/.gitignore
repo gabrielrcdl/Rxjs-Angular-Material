@@ -1,2 +1,7 @@
 node_modules
+<<<<<<< Updated upstream
 dist
+=======
+dist
+.DS_Store
+>>>>>>> Stashed changes
