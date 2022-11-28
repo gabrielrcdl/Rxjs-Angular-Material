@@ -6,7 +6,6 @@ export const SCROLL_CONTAINER = 'mat-sidenav-content';
 export const TEXT_LIMIT = 50;
 export const SHADOW_LIMIT = 100;
 
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -15,47 +14,38 @@ export const SHADOW_LIMIT = 100;
 export class AppComponent implements OnInit {
   public isSmallScreen: boolean = false;
   public showText: boolean = false;
-  public  applyShadow: boolean = false;
-
-
+  public applyShadow: boolean = false;
 
   constructor(private breakpointObserver: BreakpointObserver) {}
-
 
   ngOnInit(): void {
     const container = document.getElementsByClassName(SCROLL_CONTAINER)[0];
 
-
     fromEvent(container, 'scroll')
-    .pipe(
-      map(() => container.scrollTop)
-    )
-    .subscribe({
-      next: (value: number) => this.determineHeader(value)// next recebe o resultado do map
-    })
+      .pipe(map(() => container.scrollTop))
+      .subscribe({
+        next: (value: number) => this.determineHeader(value), // next recebe o resultado do map
+      });
   }
 
-  determineHeader( scrollTop: number){
-    this.showText = scrollTop >=  TEXT_LIMIT;
-    this.applyShadow = scrollTop >= SHADOW_LIMIT
+  determineHeader(scrollTop: number) {
+    this.showText = scrollTop >= TEXT_LIMIT;
+    this.applyShadow = scrollTop >= SHADOW_LIMIT;
   }
-
   ngAfterContentInit(): void {
     // Observando o tempo todo o tamanho da tela
-    this.breakpointObserver.observe(['(max-width: 800px)'])
-    .subscribe({
+    this.breakpointObserver.observe(['(max-width: 800px)']).subscribe({
       next: (res) => {
-          if (res.matches) {
-            this.isSmallScreen = true;
-          }else{
-            this.isSmallScreen = false;
-          }
+        if (res.matches) {
+          this.isSmallScreen = true;
+        } else {
+          this.isSmallScreen = false;
+        }
       },
     });
   }
 
-
-  get sidenavMode(){
+  get sidenavMode() {
     return this.isSmallScreen ? 'over' : 'side';
   }
 }
