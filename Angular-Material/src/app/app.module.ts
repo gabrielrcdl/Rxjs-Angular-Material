@@ -10,9 +10,15 @@ import { FormFieldInputComponent } from './form-field-input/form-field-input.com
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
 import { MatListModule } from '@angular/material/list';
+import { ProgressSpinnerComponent } from './progress-spinner/progress-spinner.component';
 
 @NgModule({
-  declarations: [AppComponent, ButtonsIconsComponent, FormFieldInputComponent],
+  declarations: [
+    AppComponent,
+     ButtonsIconsComponent,
+     FormFieldInputComponent,
+     ProgressSpinnerComponent
+    ],
   imports: [
     BrowserModule,
     AppRoutingModule,
